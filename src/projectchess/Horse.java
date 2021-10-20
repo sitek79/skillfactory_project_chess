@@ -3,7 +3,7 @@ package projectchess;
 public class Horse {
     String color;
     public Horse(String color) {
-        this.color;
+        this.color
     }
 
     String getColor() {
