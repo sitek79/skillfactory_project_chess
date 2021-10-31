@@ -32,7 +32,7 @@ public class Horse extends ChessPiece {
                             {line - 1, column - 2}, {line - 1, column + 2},
                             {line + 1, column - 2}, {line + 1, column + 2},
                     };
-                    // проверяем, можно ли сходить в нужную позицию
+                    // проверяем, можно ли сходить в нужную позицию 
                     for (int i = 0; i < positions.length; i++) {
                         if (positions[i][0] == toLine && positions[i][1] == toColumn)
                             return true;
