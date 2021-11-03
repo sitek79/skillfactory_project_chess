@@ -29,7 +29,7 @@ public class Bishop extends ChessPiece {
                 return false;
             }
 
-            // from up-left to down-right
+            // сверху вниз -> вниз направо
             if ((column == getMin(column, toColumn) && line == getMax(line, toLine)) ||
                     (toColumn == getMin(column, toColumn) && toLine == getMax(line, toLine))) {
                 // Max и Min нужны чтобы можно было делать обратный ход (т.е. сверху справа -> вниз налево)
@@ -50,8 +50,7 @@ public class Bishop extends ChessPiece {
                     }
                 }
                 return true;
-            } else { // сверху справа -> налево вниз
-                // from down-left to up-right
+            } else { // сверху справа -> вниз налево
                 int fromL = getMin(line, toLine);
                 int fromC = getMin(column, toColumn);
                 int toL = getMax(line, toLine);

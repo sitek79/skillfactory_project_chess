@@ -13,19 +13,20 @@ public class Pawn extends ChessPiece {
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         // все координаты существуют
-        if (checkPos(line) && checkPos(column) && checkPos(toLine) && checkPos(toColumn)
+        if (checkPos(line) && checkPos(column) && checkPos(toLine) && checkPos(toColumn) &&
                 // и в этой клетке есть фигура
-                && chessBoard.board[line][column] != null) {
+                chessBoard.board[line][column] != null) {
                 // не ходим наискосок, т.е. не "едим" фигуру
             if (column == toColumn) {
                 int dir; // на сколько клеток вперед
                 int start;
-                if (color.equals("white")) { // для белых фигур
+
+                if (color.equals("White")) { // для белых фигур
                     dir = 1; // направление хода, для белых вверх по доске
                     start = 1; // стартовая линия, на которой находится пешка
                 } else {
                     dir = -1; // направление хода, для черных вниз по доске
-                    start = 5; // стартовая линия, на которой находится пешка
+                    start = 6; // стартовая линия, на которой находится пешка
                 }
                 // проверяем, можно ли сходить в конечную клетку
                 if (line + dir == toLine) {
@@ -38,7 +39,7 @@ public class Pawn extends ChessPiece {
                     return chessBoard.board[toLine][toColumn] == null && chessBoard.board[line + dir][column] == null;
                 }
             }
-        } else { // если рубим
+        } else { // если можем съесть
             // если по колонке и линии сдвигаемся на один
             if ((column - toColumn == 1 || column - toColumn == -1) &&
                     (line - toLine == 1 || line - toLine == -1) &&
@@ -55,6 +56,7 @@ public class Pawn extends ChessPiece {
     public String getSymbol() {
         return "P";
     }
+
     public boolean checkPos(int pos) {
         return pos >= 0 && pos <= 7;
     }
