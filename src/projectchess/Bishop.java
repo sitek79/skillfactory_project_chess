@@ -25,6 +25,11 @@ public class Bishop extends ChessPiece {
                 // и стартовая клетка не пустая
                 chessBoard.board[line][column] != null) {
             // сверху слева -> направо вниз
+            if (!chessBoard.board[line][column].equals(this)) {
+                return false;
+            }
+
+            // from up-left to down-right
             if ((column == getMin(column, toColumn) && line == getMax(line, toLine)) ||
                     (toColumn == getMin(column, toColumn) && toLine == getMax(line, toLine))) {
                 // Max и Min нужны чтобы можно было делать обратный ход (т.е. сверху справа -> вниз налево)
@@ -33,29 +38,30 @@ public class Bishop extends ChessPiece {
                 int toL = getMin(line, toLine);
                 int toC = getMax(column, toColumn);
                 // позиции, которые слон проходит по пути
-                int[][] position = new int[toC - fromC][1];
+                int[][] positions = new int[toC - fromC][1];
                 // число колонок = числу линий пройденных слоном
-                for (int i = 1, i < toC - fromC; i++) {
+                for (int i = 1; i < toC - fromC; i++) {
                     if (chessBoard.board[fromL - i][fromC + i] == null) {
-                        position[i - 1] = new int[] {fromL - i, fromC + i};
+                        positions[i - 1] = new int[]{fromL - i, fromC + i};
                     } else if (!chessBoard.board[fromL - i][fromC + i].color.equals(this.color) && fromL - i == toLine) {
-                        position[i - 1] = new int[] {fromL - i, fromC + i};
-                    } else  {
+                        positions[i - 1] = new int[]{fromL - i, fromC + i};
+                    } else {
                         return false;
                     }
                 }
                 return true;
             } else { // сверху справа -> налево вниз
+                // from down-left to up-right
                 int fromL = getMin(line, toLine);
                 int fromC = getMin(column, toColumn);
                 int toL = getMax(line, toLine);
                 int toC = getMax(column, toColumn);
-                int[][] position = new int[toC-fromC][1];
+                int[][] positions = new int[toC - fromC][1];
                 for (int i = 1; i < toC - fromC; i++) {
                     if (chessBoard.board[fromL + i][fromC + i] == null) {
-                        position[i-1] = new int[] {fromL + i, fromC + i};
+                        positions[i - 1] = new int[]{fromL + i, fromC + i};
                     } else if (!chessBoard.board[fromL + i][fromC + i].color.equals(this.color) && fromL + i == toLine) {
-                        position[i-1] = new int[] {fromL + i, fromC + i};
+                        positions[i - 1] = new int[]{fromL + i, fromC + i};
                     } else {
                         return false;
                     }
@@ -68,5 +74,16 @@ public class Bishop extends ChessPiece {
     @Override
     public String getSymbol() {
         return "B";
+    }
+    public int getMax(int a, int b) {
+        return Math.max(a, b);
+    }
+
+    public int getMin(int a, int b) {
+        return Math.min(a, b);
+    }
+
+    public boolean checkPos(int pos) {
+        return pos >= 0 && pos <= 7;
     }
 }

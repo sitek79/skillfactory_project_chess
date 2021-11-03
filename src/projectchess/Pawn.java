@@ -55,4 +55,7 @@ public class Pawn extends ChessPiece {
     public String getSymbol() {
         return "P";
     }
+    public boolean checkPos(int pos) {
+        return pos >= 0 && pos <= 7;
+    }
 }
