@@ -8,7 +8,8 @@ public class Bishop extends ChessPiece {
 
     @Override
     public String getColor() {
-        return this.color;
+        //return this.color;
+        return color;
     }
 
     @Override

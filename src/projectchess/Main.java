@@ -1,5 +1,7 @@
 package projectchess;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static ChessBoard buildBoard() {
@@ -45,13 +47,12 @@ public class Main {
 
         ChessBoard board = buildBoard();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("""
-                Чтобы проверить игру надо вводить команды:
-                'exit' - для выхода
-                'replay' - для перезапуска игры
-                'castling0' или 'castling7' - для рокировки по соответсвующей линии
-                'move 1 1 2 3' - для передвижения фигуры с позиции 1 1 на 2 3(поле это двумерный массив от 0 до 7)
-                Проверьте могут ли фигуры ходить друг скозь друга, корректно ли съедают друг друга, можно ли поставить шах и сделть рокировку?""");
+        System.out.println("Чтобы проверить игру надо вводить команды:\n" +
+                "exit - для выхода\n" +
+                "replay - для перезапуска игры\n" +
+                "castling0' или 'castling7' - для рокировки по соответсвующей линии \n"+
+                "move 1 1 2 3' - для передвижения фигуры с позиции 1 1 на 2 3(поле это двумерный массив от 0 до 7)\n" +
+                "Проверьте могут ли фигуры ходить друг скозь друга, корректно ли съедают друг друга, можно ли поставить шах и сделть рокировку?\n");
         System.out.println();
         board.printBoard();
         while (true) {
